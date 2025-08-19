@@ -26,6 +26,16 @@ To learn how to contribute to the MetaMask codebase, visit our [Contributor Docs
 - [Miscellaneous](./docs/readme/miscellaneous.md)
 - [E2E Testing Segment Events](./docs/testing/e2e/segment-events.md)
 
+## Technical Notes
+
+### Entry Point Migration
+The root application entry point has been migrated from `index.js` to `index.ts` as part of the ongoing TypeScript migration. This change includes:
+- Proper TypeScript type annotations for all variables and functions
+- Updated build configurations to reference the new `index.ts` entry point
+- Global type declarations for error handling functionality
+
+All build scripts and bundling processes now use `index.ts` as the entry file.
+
 ## Getting started
 
 ### Using Expo (recommended)
