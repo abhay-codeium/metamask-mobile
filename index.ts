@@ -77,7 +77,7 @@ LogBox.ignoreLogs([
   'Warning: componentWillReceiveProps has been renamed',
 ]);
 
-const IGNORE_BOXLOGS_DEVELOPMENT = process.env.IGNORE_BOXLOGS_DEVELOPMENT;
+const IGNORE_BOXLOGS_DEVELOPMENT: string | undefined = process.env.IGNORE_BOXLOGS_DEVELOPMENT;
 // Ignore box logs, useful for QA testing in development builds
 if (IGNORE_BOXLOGS_DEVELOPMENT === 'true') {
   LogBox.ignoreAllLogs();
@@ -95,7 +95,7 @@ AppRegistry.registerComponent(name, () =>
   isE2E ? Root : Sentry.wrap(Root),
 );
 
-function setupGlobalErrorHandler() {
+function setupGlobalErrorHandler(): void {
   const reactNativeDefaultHandler = global.ErrorUtils.getGlobalHandler();
   // set the base handler to the react native ExceptionsManager.handleException(), please refer to setupErrorHandling.js under react-native/Libraries/Core/ for details.
   setReactNativeDefaultHandler(reactNativeDefaultHandler);

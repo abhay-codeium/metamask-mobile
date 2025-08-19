@@ -402,3 +402,10 @@ declare module '@sentry/react-native' {
     hint?: ExclusiveEventHintOrCaptureContext,
   ): string;
 }
+
+declare global {
+  namespace ErrorUtils {
+    function getGlobalHandler(): (error: Error, isFatal: boolean) => void;
+    function setGlobalHandler(handler: (error: Error, isFatal: boolean) => void): void;
+  }
+}
