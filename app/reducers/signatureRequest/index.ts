@@ -1,6 +1,6 @@
 import { SecurityAlertResponse } from '../../components/Views/confirmations/legacy/components/BlockaidBanner/BlockaidBanner.types';
 
-interface StateType {
+export interface StateType {
   securityAlertResponse?: SecurityAlertResponse;
 }
 
@@ -9,7 +9,7 @@ interface ActionType {
   securityAlertResponse?: SecurityAlertResponse;
 }
 
-const initialState: StateType = {
+export const initialState: StateType = {
   securityAlertResponse: undefined,
 };
 

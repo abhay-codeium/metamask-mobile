@@ -37,6 +37,7 @@ import PPOMUtil from '../../lib/ppom/ppom-util';
 import { backgroundState } from '../../util/test/initial-root-state';
 import { Store } from 'redux';
 import { RootState } from 'app/reducers';
+import { BrowserState } from 'app/reducers/browser';
 import { addTransaction } from '../../util/transaction-controller';
 import { Messenger } from '@metamask/base-controller';
 import {
@@ -298,27 +299,30 @@ function setupGlobalState({
     // TODO: Replace "any" with type
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .spyOn(store as Store<Partial<RootState>, any>, 'getState')
-    .mockImplementation(() => ({
-      browser: activeTab
-        ? {
-            activeTab,
-          }
-        : {},
-      engine: {
-        backgroundState: {
-          ...backgroundState,
-          NetworkController: {
-            selectedNetworkClientId: selectedNetworkClientId || '',
-            networksMetadata: networksMetadata || {},
-            networkConfigurationsByChainId:
-              networkConfigurationsByChainId || {},
-          },
-          PreferencesController: selectedAddress ? { selectedAddress } : {},
-        },
-        // TODO: Replace "any" with type
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any,
-    }));
+    .mockImplementation(
+      () =>
+        ({
+          browser: (activeTab
+            ? {
+                activeTab,
+              }
+            : {}) as Partial<BrowserState>,
+          engine: {
+            backgroundState: {
+              ...backgroundState,
+              NetworkController: {
+                selectedNetworkClientId: selectedNetworkClientId || '',
+                networksMetadata: networksMetadata || {},
+                networkConfigurationsByChainId:
+                  networkConfigurationsByChainId || {},
+              },
+              PreferencesController: selectedAddress ? { selectedAddress } : {},
+            },
+            // TODO: Replace "any" with type
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        }) as Partial<RootState>,
+    );
   mockStore.dispatch.mockImplementation((obj) => obj);
   if (addTransactionResult) {
     mockAddTransaction.mockImplementation(async () => ({

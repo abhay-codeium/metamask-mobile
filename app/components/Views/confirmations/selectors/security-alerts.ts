@@ -1,7 +1,7 @@
-import { SecurityAlertResponse } from '@metamask/transaction-controller';
 import { RootState } from '../../../../reducers';
+import { StateType } from '../../../../reducers/signatureRequest';
 
 export const selectSignatureSecurityAlertResponse = (
   rootState: RootState,
-): { securityAlertResponse: SecurityAlertResponse } =>
+): StateType =>
   rootState.signatureRequest;

@@ -10,6 +10,7 @@ import {
   selectSingleTokenBalance,
 } from './tokenBalancesController';
 import { TokenBalancesControllerState } from '@metamask/assets-controllers';
+import { initialState as settingsInitialState } from '../reducers/settings';
 
 describe('TokenBalancesController Selectors', () => {
   const mockTokenBalancesControllerState: TokenBalancesControllerState = {
@@ -146,7 +147,7 @@ describe('TokenBalancesController Selectors', () => {
     const arrange = () => {
       // Deep clone for isolated test
       const mockState: RootState = JSON.parse(JSON.stringify(mockRootState));
-      mockState.settings = { showFiatOnTestnets: true };
+      mockState.settings = { ...settingsInitialState, showFiatOnTestnets: true };
 
       return { mockState };
     };

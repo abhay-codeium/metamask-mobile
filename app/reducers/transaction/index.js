@@ -1,7 +1,7 @@
 import { REHYDRATE } from 'redux-persist';
 import { getTxData, getTxMeta } from '../../util/transaction-reducer-helpers';
 
-const initialState = {
+export const initialState = {
   ensRecipient: undefined,
   assetType: undefined,
   selectedAsset: {},
@@ -46,6 +46,11 @@ const getAssetType = (selectedAsset) => {
   return assetType;
 };
 
+/**
+ * @param {import('./types').TransactionState | undefined} state
+ * @param {any} action
+ * @returns {import('./types').TransactionState}
+ */
 const transactionReducer = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE:

@@ -376,6 +376,11 @@ export const initialState = {
   },
 };
 
+/**
+ * @param {import('./types').SwapsState | undefined} state
+ * @param {any} action
+ * @returns {import('./types').SwapsState}
+ */
 function swapsReducer(state = initialState, action) {
   switch (action.type) {
     case SWAPS_SET_LIVENESS: {

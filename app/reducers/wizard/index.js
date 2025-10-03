@@ -1,6 +1,6 @@
 import { REHYDRATE } from 'redux-persist';
 
-const initialState = {
+export const initialState = {
   step: 0,
 };
 

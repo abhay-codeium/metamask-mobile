@@ -35,6 +35,11 @@ export const currentNotificationSelector = createSelector(
   (notifications) => notifications[0] || {},
 );
 
+/**
+ * @param {import('./types').NotificationState | undefined} state
+ * @param {any} action
+ * @returns {import('./types').NotificationState}
+ */
 const notificationReducer = (state = initialState, action) => {
   const { notifications } = state;
   switch (action.type) {
