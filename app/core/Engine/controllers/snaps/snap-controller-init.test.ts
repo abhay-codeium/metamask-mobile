@@ -130,12 +130,17 @@ describe('SnapControllerInit', () => {
       const controllerMock = jest.mocked(SnapController);
       const getFeatureFlags = controllerMock.mock.calls[0][0].getFeatureFlags;
 
-      // @ts-expect-error: Partial mock.
       jest.mocked(store.getState).mockReturnValue({
         settings: {
+          searchEngine: 'DuckDuckGo',
+          primaryCurrency: 'usd',
+          lockTime: -1,
+          useBlockieIcon: true,
+          hideZeroBalanceTokens: false,
           basicFunctionalityEnabled: true,
+          deepLinkModalDisabled: false,
         },
-      });
+      } as any);
 
       expect(getFeatureFlags()).toEqual({
         disableSnaps: false,

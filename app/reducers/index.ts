@@ -10,6 +10,10 @@ import legalNoticesReducer from './legalNotices';
 import userReducer, { UserState } from './user';
 import wizardReducer from './wizard';
 import onboardingReducer, { OnboardingState } from './onboarding';
+import { PrivacyState } from './privacy/types';
+import { BookmarksState } from './bookmarks/types';
+import { BrowserState } from './browser/types';
+import { SettingsState } from './settings/types';
 import fiatOrders from './fiatOrders';
 import swapsReducer from './swaps';
 import signatureRequestReducer from './signatureRequest';
@@ -61,21 +65,13 @@ export interface RootState {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   collectibles: any;
   engine: { backgroundState: EngineState };
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  privacy: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  bookmarks: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  browser: any;
+  privacy: PrivacyState;
+  bookmarks: BookmarksState;
+  browser: BrowserState;
   // TODO: Replace "any" with type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   modals: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  settings: any;
+  settings: SettingsState;
   // TODO: Replace "any" with type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   alert: any;
@@ -132,11 +128,17 @@ const baseReducers = {
   // TODO: Replace "any" with type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   engine: engineReducer as any,
-  privacy: privacyReducer,
+  // TODO: Replace "any" with type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  privacy: privacyReducer as any,
   bookmarks: bookmarksReducer,
-  browser: browserReducer,
+  // TODO: Replace "any" with type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  browser: browserReducer as any,
   modals: modalsReducer,
-  settings: settingsReducer,
+  // TODO: Replace "any" with type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  settings: settingsReducer as any,
   alert: alertReducer,
   transaction: transactionReducer,
   user: userReducer,
