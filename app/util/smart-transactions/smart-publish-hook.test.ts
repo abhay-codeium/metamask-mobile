@@ -255,7 +255,7 @@ describe('submitSmartTransactionHook', () => {
 
   it('returns a txHash asap if the feature flag requires it', async () => {
     withRequest(async ({ request }) => {
-      request.featureFlags.smartTransactions.mobileReturnTxHashAsap = true;
+      request.featureFlags.smartTransactions!.mobileReturnTxHashAsap = true;
       const result = await submitSmartTransactionHook(request);
       expect(result).toEqual({ transactionHash });
     });
@@ -398,7 +398,7 @@ describe('submitSmartTransactionHook', () => {
   it('submits a smart transaction without the smart transaction status page', async () => {
     withRequest(
       async ({ request, controllerMessenger, submitSignedTransactionsSpy }) => {
-        request.featureFlags.smartTransactions.mobileReturnTxHashAsap = true;
+        request.featureFlags.smartTransactions!.mobileReturnTxHashAsap = true;
         setImmediate(() => {
           controllerMessenger.publish(
             'SmartTransactionsController:smartTransaction',
@@ -702,7 +702,7 @@ describe('submitSmartTransactionHook', () => {
         'setStatusRefreshInterval',
       );
 
-      request.featureFlags.smartTransactions.batchStatusPollingInterval = 2000;
+      request.featureFlags.smartTransactions!.batchStatusPollingInterval = 2000;
 
       await submitSmartTransactionHook(request);
 
@@ -717,7 +717,7 @@ describe('submitSmartTransactionHook', () => {
         'setStatusRefreshInterval',
       );
 
-      request.featureFlags.smartTransactions.batchStatusPollingInterval = 0;
+      request.featureFlags.smartTransactions!.batchStatusPollingInterval = 0;
 
       await submitSmartTransactionHook(request);
 
@@ -923,7 +923,7 @@ describe('submitBatchSmartTransactionHook', () => {
         ],
       },
       async ({ request, controllerMessenger, submitSignedTransactionsSpy }) => {
-        request.featureFlags.smartTransactions.mobileReturnTxHashAsap = true;
+        request.featureFlags.smartTransactions!.mobileReturnTxHashAsap = true;
         submitSignedTransactionsSpy.mockResolvedValue({
           uuid: stxUuid,
           txHash: transactionHash,
@@ -993,7 +993,7 @@ describe('submitBatchSmartTransactionHook', () => {
           'setStatusRefreshInterval',
         );
 
-        request.featureFlags.smartTransactions.batchStatusPollingInterval = 2000;
+        request.featureFlags.smartTransactions!.batchStatusPollingInterval = 2000;
 
         await submitBatchSmartTransactionHook(request);
 

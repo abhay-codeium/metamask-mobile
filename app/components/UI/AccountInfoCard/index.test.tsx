@@ -76,7 +76,7 @@ const mockInitialState: DeepPartial<RootState> = {
   transaction: {
     origin: 'https://metamask.io',
     chainId: '0xaa36a7',
-  },
+  } as any,
 };
 
 jest.mock('react-redux', () => ({

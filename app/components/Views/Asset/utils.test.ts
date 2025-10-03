@@ -14,6 +14,7 @@ describe('getSwapsIsLive', () => {
   const mockState = {
     swaps: {
       isLive: true,
+      hasOnboarded: true,
       '0x1': { isLive: true },
     },
     engine: {
@@ -92,8 +93,8 @@ describe('getSwapsIsLive', () => {
       const result = getSwapsIsLive(
         {
           ...mockState,
-          swaps: { ...mockState.swaps, '0x1': { isLive: false } },
-        },
+          swaps: { ...mockState.swaps, '0x1': { isLive: false } } as any,
+        } as RootState,
         mockChainId,
       );
       expect(result).toBe(false);
@@ -103,8 +104,8 @@ describe('getSwapsIsLive', () => {
       const result = getSwapsIsLive(
         {
           ...mockState,
-          swaps: { ...mockState.swaps, '0x1': null },
-        },
+          swaps: { ...mockState.swaps, '0x1': null } as any,
+        } as RootState,
         mockChainId,
       );
       expect(result).toBe(false);

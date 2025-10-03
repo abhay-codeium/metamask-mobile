@@ -16,8 +16,7 @@ export const getSwapsIsLive = (
   chainId: Hex | CaipChainId,
 ) => {
   const evmSwapsIsLive = isPortfolioViewEnabled()
-    ? // @ts-expect-error issues with the type, it should have 2 args
-      swapsLivenessMultichainSelector(state, chainId)
+    ? swapsLivenessMultichainSelector(state, chainId)
     : swapsLivenessSelector(state);
   let swapsIsLive = evmSwapsIsLive;
 

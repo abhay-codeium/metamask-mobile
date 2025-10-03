@@ -33,9 +33,9 @@ const mockState: DeepPartial<RootState> = {
     },
   },
   transaction: {
-    id: 123,
+    id: '123',
     securityAlertResponses: {
-      123: {
+      '123': {
         result_type: ResultType.Warning,
         reason: Reason.approvalFarming,
         block: 123,
@@ -43,7 +43,7 @@ const mockState: DeepPartial<RootState> = {
         chainId: '0x1',
       },
     },
-  },
+  } as any,
 };
 
 describe('TransactionBlockaidBanner', () => {
@@ -76,7 +76,7 @@ describe('TransactionBlockaidBanner', () => {
           ...mockState,
           transaction: {
             securityAlertResponses: {},
-          },
+          } as any,
         },
       },
     );

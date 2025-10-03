@@ -29,6 +29,7 @@ import { addSwapsTransaction } from '../swaps/swaps-transactions';
 import { Hex } from '@metamask/utils';
 import { isPerDappSelectedNetworkEnabled } from '../networks';
 import { isLegacyTransaction } from '../transactions';
+import type { SwapsChainFeatureFlags } from '../../reducers/swaps/types';
 
 export type AllowedActions = never;
 
@@ -42,24 +43,7 @@ export interface SubmitSmartTransactionRequest {
   controllerMessenger: Messenger<AllowedActions, AllowedEvents>;
   shouldUseSmartTransaction: boolean;
   approvalController: ApprovalController;
-  featureFlags: {
-    mobile_active: boolean;
-    extension_active: boolean;
-    fallback_to_v1: boolean;
-    fallbackToV1: boolean;
-    mobileActive: boolean;
-    extensionActive: boolean;
-    mobileActiveIOS: boolean;
-    mobileActiveAndroid: boolean;
-    smartTransactions:
-      | {
-          expectedDeadline: number;
-          maxDeadline: number;
-          mobileReturnTxHashAsap: boolean;
-          batchStatusPollingInterval: number;
-        }
-      | Record<string, never>;
-  };
+  featureFlags: SwapsChainFeatureFlags;
   transactions: PublishBatchHookTransaction[];
 }
 
@@ -73,16 +57,7 @@ class SmartTransactionHook {
   #approvalEnded: boolean;
   #approvalId: string | undefined;
   #chainId: Hex;
-  #featureFlags: {
-    extensionActive: boolean;
-    mobileActive: boolean;
-    smartTransactions: {
-      expectedDeadline?: number;
-      maxDeadline?: number;
-      mobileReturnTxHashAsap?: boolean;
-      batchStatusPollingInterval?: number;
-    };
-  };
+  #featureFlags: SwapsChainFeatureFlags;
   #shouldUseSmartTransaction: boolean;
   #smartTransactionsController: SmartTransactionsController;
   #transactionController: TransactionController;

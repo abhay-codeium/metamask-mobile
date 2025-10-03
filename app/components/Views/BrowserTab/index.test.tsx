@@ -31,8 +31,8 @@ const mockInitialState = {
     },
   },
   transaction: {
-    selectedAsset: '',
-  },
+    selectedAsset: {},
+  } as any,
 };
 
 jest.mock('../../../core/Engine', () => ({

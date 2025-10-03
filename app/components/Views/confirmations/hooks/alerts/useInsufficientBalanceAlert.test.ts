@@ -71,7 +71,7 @@ describe('useInsufficientBalanceAlert', () => {
     });
     mockSelectTransactionState.mockReturnValue({
       maxValueMode: false,
-    });
+    } as any);
   });
 
   it('return empty array when no transaction metadata is available', () => {
@@ -84,7 +84,7 @@ describe('useInsufficientBalanceAlert', () => {
   it('return empty array when max value mode is enabled', () => {
     mockSelectTransactionState.mockReturnValue({
       maxValueMode: true,
-    });
+    } as any);
 
     const { result } = renderHook(() => useInsufficientBalanceAlert());
     expect(result.current).toEqual([]);

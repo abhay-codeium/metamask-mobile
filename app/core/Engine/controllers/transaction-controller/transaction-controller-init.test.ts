@@ -145,7 +145,7 @@ describe('Transaction Controller Init', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     selectShouldUseSmartTransactionMock.mockReturnValue(true);
-    selectSwapsChainFeatureFlagsMock.mockReturnValue({});
+    selectSwapsChainFeatureFlagsMock.mockReturnValue({} as any);
     getGlobalChainIdMock.mockReturnValue('0x1');
   });
 

@@ -87,7 +87,7 @@ const mockInitialState: DeepPartial<RootState> = {
   },
   transaction: {
     securityAlertResponses: {
-      1: {
+      '1': {
         result_type: 'Malicious',
         reason: 'blur_farming',
         providerRequestsCount: {},
@@ -101,7 +101,7 @@ const mockInitialState: DeepPartial<RootState> = {
       to: '0xe64dD0AB5ad7e8C5F2bf6Ce75C34e187af8b920A',
       value: '0x2',
     },
-  },
+  } as any,
   fiatOrders: {
     networks: [
       {
@@ -328,7 +328,7 @@ describe('Confirm', () => {
     const testState = merge({}, mockInitialState, {
       transaction: {
         securityAlertResponses: {
-          1: {
+          '1': {
             result_type: 'Malicious',
             reason: 'blur_farming',
             providerRequestsCount: {},
@@ -348,7 +348,7 @@ describe('Confirm', () => {
           to: '0xe64dD0AB5ad7e8C5F2bf6Ce75C34e187af8b920A',
           value: '0x2',
         },
-      },
+      } as any,
     });
     render(Confirm, testState);
 
