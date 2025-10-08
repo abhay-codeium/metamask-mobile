@@ -2,8 +2,7 @@ import {
   RevealSeedViewSelectorsIDs,
   RevealSeedViewSelectorsText,
 } from '../../../selectors/Settings/SecurityAndPrivacy/RevealSeedView.selectors';
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 
 class RevealPrivateKey {
   get container() {
@@ -83,9 +82,10 @@ class RevealPrivateKey {
     await Gestures.scrollToElement(this.doneButton, this.scrollViewIdentifier);
   }
   async enterPasswordToRevealSecretCredential(password) {
-    await Gestures.typeTextAndHideKeyboard(
+    await Gestures.typeText(
       this.passwordInputToRevealCredential,
       password,
+      {hideKeyboard: true},
     );
   }
 }

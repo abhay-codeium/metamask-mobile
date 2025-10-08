@@ -1,6 +1,5 @@
 import { ApproveComponentIDs } from '../../selectors/Confirmation/ConfirmationView.selectors';
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 
 // This components are used to check the approve confirmation specific components in the confirmation modal
 class TokenApproveConfirmation {
@@ -30,14 +29,15 @@ class TokenApproveConfirmation {
 
   async tapEditSpendingCapSaveButton() {
     await Gestures.waitAndTap(this.EditSpendingCapSaveButton, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 
   async inputSpendingCap(spendingCap: string) {
-    await Gestures.typeTextAndHideKeyboard(
+    await Gestures.typeText(
       this.EditSpendingCapInput,
       spendingCap,
+      { hideKeyboard: true },
     );
   }
 }

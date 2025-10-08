@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Browser from './BrowserView';
-import Matchers from '../../utils/Matchers';
+import { Matchers, Gestures, Assertions, Utilities } from '../../framework';
 import { BrowserViewSelectorsIDs } from '../../selectors/Browser/BrowserView.selectors';
 import {
   TestSnapViewSelectorWebIDS,
@@ -9,14 +9,10 @@ import {
   TestSnapBottomSheetSelectorWebIDS,
   EntropyDropDownSelectorWebIDS,
 } from '../../selectors/Browser/TestSnaps.selectors';
-import Gestures from '../../utils/Gestures';
 import { SNAP_INSTALL_CONNECT } from '../../../app/components/Approvals/InstallSnapApproval/components/InstallSnapConnectionRequest/InstallSnapConnectionRequest.constants';
 import { SNAP_INSTALL_PERMISSIONS_REQUEST_APPROVE } from '../../../app/components/Approvals/InstallSnapApproval/components/InstallSnapPermissionsRequest/InstallSnapPermissionsRequest.constants';
 import { SNAP_INSTALL_OK } from '../../../app/components/Approvals/InstallSnapApproval/InstallSnapApproval.constants';
-import TestHelpers from '../../helpers';
-import Assertions from '../../utils/Assertions';
 import { IndexableWebElement } from 'detox/detox';
-import Utilities from '../../utils/Utilities';
 import { ConfirmationFooterSelectorIDs } from '../../selectors/Confirmation/ConfirmationView.selectors';
 
 export const TEST_SNAPS_URL =
@@ -136,11 +132,11 @@ class TestSnaps {
     locator: keyof typeof TestSnapInputSelectorWebIDS,
     message: string,
   ) {
-    const webElement = Matchers.getElementByWebID(
+    const webElement = (await Matchers.getElementByWebID(
       BrowserViewSelectorsIDs.BROWSER_WEBVIEW_ID,
       TestSnapInputSelectorWebIDS[locator],
-    ) as Promise<IndexableWebElement>;
-    await Gestures.typeInWebElement(webElement, message);
+    )) as IndexableWebElement;
+    await webElement.replaceText(message);
   }
 
   async approveSignRequest() {
@@ -161,27 +157,24 @@ class TestSnaps {
       TestSnapResultSelectorWebIDS.networkAccessResultSpan,
     )) as IndexableWebElement;
 
-    await Utilities.waitUntil(
+    await Utilities.executeWithRetry(
       async () => {
-        try {
-          await this.tapButton('getWebSocketState');
+        await this.tapButton('getWebSocketState');
 
-          await TestHelpers.delay(250);
+        const text = await resultElement.getText();
 
-          const text = await resultElement.getText();
+        const { open, origin, blockNumber } = JSON.parse(text);
 
-          const { open, origin, blockNumber } = JSON.parse(text);
+        const blockNumberMatch =
+          typeof state.blockNumber === 'string'
+            ? typeof blockNumber === state.blockNumber
+            : blockNumber === state.blockNumber;
 
-          const blockNumberMatch =
-            typeof state.blockNumber === 'string'
-              ? typeof blockNumber === state.blockNumber
-              : blockNumber === state.blockNumber;
+        const conditionMet =
+          open === state.open && origin === state.origin && blockNumberMatch;
 
-          return (
-            open === state.open && origin === state.origin && blockNumberMatch
-          );
-        } catch (error) {
-          return false;
+        if (!conditionMet) {
+          throw new Error('WebSocket state does not match expected state');
         }
       },
       { timeout: 10000, interval: 1000 },

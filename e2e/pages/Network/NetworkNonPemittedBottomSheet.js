@@ -2,8 +2,7 @@ import {
   NetworkListModalSelectorsIDs,
   NetworkListModalSelectorsText,
 } from '../../selectors/Network/NetworkListModal.selectors';
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import {
   NetworkNonPemittedBottomSheetSelectorsIDs,
   NetworkNonPemittedBottomSheetSelectorsText,

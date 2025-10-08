@@ -1,7 +1,5 @@
-import TestHelpers from '../../helpers';
 import { BackupAndSyncViewSelectorsIDs } from '../../selectors/Settings/BackupAndSyncView.selectors';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 
 class BackupAndSyncView {
   get accountSyncToggle() {
@@ -18,12 +16,10 @@ class BackupAndSyncView {
 
   async toggleBackupAndSync() {
     await Gestures.waitAndTap(this.backupAndSyncToggle);
-    await TestHelpers.delay(2000);
   }
 
   async toggleAccountSync() {
     await Gestures.waitAndTap(this.accountSyncToggle);
-    await TestHelpers.delay(2000);
   }
 }
 

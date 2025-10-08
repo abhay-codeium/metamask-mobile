@@ -1,6 +1,5 @@
 import { WalletViewSelectorsIDs } from '../../selectors/wallet/WalletView.selectors';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 
 class SortModal {
   get sortAlphabetically() {

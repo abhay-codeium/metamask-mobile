@@ -1,9 +1,8 @@
-import Matchers from '../../../utils/Matchers';
 import {
   AddContactViewSelectorsIDs,
   AddContactViewSelectorsText,
 } from '../../../selectors/Settings/Contacts/AddContactView.selectors';
-import Gestures from '../../../utils/Gestures';
+import { Gestures, Matchers } from '../../../framework';
 
 class AddContactView {
   get container() {
@@ -65,22 +64,22 @@ class AddContactView {
   }
 
   async typeInName(name) {
-    await Gestures.replaceTextInField(this.nameInput, name);
+    await Gestures.typeText(this.nameInput, name, {clearFirst: true});
     await Gestures.waitAndTap(this.memoLabel); // tap somewhere to dismiss keyboard
   }
 
   async typeInMemo(memo) {
-    await Gestures.replaceTextInField(this.memoInput, memo);
+    await Gestures.typeText(this.memoInput, memo, {clearFirst: true});
     await Gestures.waitAndTap(this.memoLabel); // tap somewhere to dismiss keyboard
   }
 
   async typeInAddress(address) {
-    await Gestures.replaceTextInField(this.addressInput, address);
+    await Gestures.typeText(this.addressInput, address, {clearFirst: true});
     await Gestures.waitAndTap(this.memoLabel); // tap somewhere to dismiss keyboard
   }
 
   async clearAddressInputBox() {
-    await Gestures.clearField(this.addressInput);
+    await Gestures.typeText(this.addressInput, '', {clearFirst: true});
   }
 
   async selectNetwork(networkName) {

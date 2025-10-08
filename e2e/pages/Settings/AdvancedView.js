@@ -1,6 +1,5 @@
 import { AdvancedViewSelectorsIDs } from '../../selectors/Settings/AdvancedView.selectors';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 
 class AdvancedSettingsView {
   get scrollViewIdentifier() {

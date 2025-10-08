@@ -3,8 +3,7 @@ import {
   PortfolioPageSelectorsXpath,
   PortfolioPageSelectorsWebID,
 } from '../../selectors/Browser/PortfolioPage.selectors';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 
 class PortfolioHomePage {
   get connectWalletButton(): WebElement {
@@ -40,9 +39,7 @@ class PortfolioHomePage {
   }
 
   async closePrivacyModal(): Promise<void> {
-    await Gestures.tapWebElement(this.closeIconPrivacyModal, {
-      delayBeforeTap: 1000,
-    });
+    await Gestures.tapWebElement(this.closeIconPrivacyModal, 16000);
   }
 
   async tapAccountButton(): Promise<void> {

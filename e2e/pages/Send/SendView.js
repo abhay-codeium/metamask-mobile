@@ -1,9 +1,7 @@
 import TestHelpers from '../../helpers';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers, Assertions } from '../../framework';
 import { SendViewSelectorsIDs } from '../../selectors/SendFlow/SendView.selectors';
 import { AddAddressModalSelectorsIDs } from '../../selectors/SendFlow/AddAddressModal.selectors';
-import Assertions from '../../utils/Assertions';
 
 class SendView {
   get cancelButton() {
@@ -77,7 +75,7 @@ class SendView {
   }
 
   async inputAddress(address) {
-    await Gestures.replaceTextInField(this.addressInputField, address);
+    await Gestures.typeText(this.addressInputField, address, {clearFirst: true});
   }
 
   async tapAddAddressToAddressBook() {
@@ -86,7 +84,6 @@ class SendView {
 
   async removeAddress() {
     await Gestures.waitAndTap(this.removeAddressButton);
-    await TestHelpers.delay(1000);
   }
 
   async splitAddressText() {

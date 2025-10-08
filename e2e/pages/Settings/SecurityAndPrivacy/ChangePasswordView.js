@@ -6,8 +6,7 @@ import {
 import { ChoosePasswordSelectorsIDs } from '../../../selectors/Onboarding/ChoosePassword.selectors';
 import { ChangePasswordViewSelectorsText } from '../../../selectors/Settings/SecurityAndPrivacy/ChangePasswordView.selectors';
 
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 
 class ChangePasswordView {
   get title() {
@@ -43,11 +42,11 @@ class ChangePasswordView {
   }
 
   async typeInConfirmPasswordInputBox(PASSWORD) {
-    await Gestures.typeTextAndHideKeyboard(this.passwordInput, PASSWORD);
+    await Gestures.typeText(this.passwordInput, PASSWORD, {hideKeyboard: true});
   }
 
   async reEnterPassword(PASSWORD) {
-    await Gestures.typeTextAndHideKeyboard(this.confirmPasswordInput, PASSWORD);
+    await Gestures.typeText(this.confirmPasswordInput, PASSWORD, {hideKeyboard: true});
   }
 
   async tapIUnderstandCheckBox() {
@@ -60,7 +59,7 @@ class ChangePasswordView {
   }
 
   async tapSubmitButton() {
-    await Gestures.waitAndTap(this.submitButton, { delayBeforeTap: 1000 });
+    await Gestures.waitAndTap(this.submitButton, { delay: 1000 });
   }
 }
 

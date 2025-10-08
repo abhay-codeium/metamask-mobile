@@ -1,4 +1,4 @@
-import Matchers from '../../../utils/Matchers';
+import { Matchers, Gestures } from '../../../framework';
 import {
   AlertModalSelectorsIDs,
   AlertModalSelectorsText,
@@ -7,7 +7,6 @@ import {
   ConfirmationTopSheetSelectorsText,
   AlertTypeIDs,
 } from '../../../selectors/Confirmation/ConfirmationView.selectors';
-import Gestures from '../../../utils/Gestures';
 
 class AlertSystem {
   get securityAlertBanner() {

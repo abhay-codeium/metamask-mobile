@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import { ShareAddressIds } from '../../selectors/MultichainAccounts/ShareAddress.selectors';
 
 class ShareAddress {

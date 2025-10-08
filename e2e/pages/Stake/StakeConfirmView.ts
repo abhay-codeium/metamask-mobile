@@ -1,5 +1,4 @@
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 import { StakeConfirmViewSelectors } from '../../selectors/Stake/StakeConfirmView.selectors.js';
 
 class StakeConfirmationView {

@@ -1,6 +1,5 @@
 import { WalletActionsBottomSheetSelectorsIDs } from '../../selectors/wallet/WalletActionsBottomSheet.selectors';
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 
 class WalletActionsBottomSheet {
   get sendButton() {
@@ -49,13 +48,13 @@ class WalletActionsBottomSheet {
 
   async tapSwapButton() {
     await Gestures.waitAndTap(this.swapButton, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 
   async tapBridgeButton() {
     await Gestures.waitAndTap(this.bridgeButton, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 

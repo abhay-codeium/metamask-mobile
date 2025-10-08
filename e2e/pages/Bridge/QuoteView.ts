@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import {
   QuoteViewSelectorIDs,
   QuoteViewSelectorText,
@@ -40,15 +39,15 @@ class QuoteView {
     return Matchers.getElementByText(QuoteViewSelectorText.NETWORK_FEE);
   }
 
-  token(chainId: string, symbol: string): Detox.NativeElement {
+  token(chainId: string, symbol: string): DetoxElement {
     const elementId = `asset-${chainId}-${symbol}`;
-    return element(by.id(elementId)).atIndex(0);
+    return Promise.resolve(element(by.id(elementId)).atIndex(0));
   }
 
   async enterAmount(amount: string): Promise<void> {
     for (const digit of amount) {
       const button = Matchers.getElementByText(digit);
-      await Gestures.waitAndTap(button, { delayBeforeTap: 500 });
+      await Gestures.waitAndTap(button, { delay: 500 });
     }
   }
 
@@ -57,36 +56,36 @@ class QuoteView {
   }
 
   async tapBridgeTo(): Promise<void> {
-    await Gestures.waitAndTap(this.bridgeTo, { delayBeforeTap: 1000 });
+    await Gestures.waitAndTap(this.bridgeTo, { delay: 1000 });
   }
 
   async tapToken(chainId: string, symbol: string): Promise<void> {
     await Gestures.waitAndTap(this.token(chainId, symbol), {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 
   async tapSourceToken(): Promise<void> {
     const token = Matchers.getElementByText('ETH');
-    await Gestures.waitAndTap(token, { delayBeforeTap: 1000 });
+    await Gestures.waitAndTap(token, { delay: 1000 });
   }
 
   async tapDestToken(): Promise<void> {
     const token = Matchers.getElementByText('USDC');
-    await Gestures.waitAndTap(token, { delayBeforeTap: 1000 });
+    await Gestures.waitAndTap(token, { delay: 1000 });
   }
 
   async tapSwapTo(): Promise<void> {
-    await Gestures.waitAndTap(this.swapTo, { delayBeforeTap: 1000 });
+    await Gestures.waitAndTap(this.swapTo, { delay: 1000 });
   }
 
   async selectNetwork(network: string): Promise<void> {
     const networkElement = Matchers.getElementByText(network);
-    await Gestures.waitAndTap(networkElement, { delayBeforeTap: 1000 });
+    await Gestures.waitAndTap(networkElement, { delay: 1000 });
   }
 
   async typeSearchToken(symbol: string): Promise<void> {
-    await Gestures.typeTextAndHideKeyboard(this.searchToken, symbol);
+    await Gestures.typeText(this.searchToken, symbol, {hideKeyboard: true});
   }
 
   async tapConfirmBridge(): Promise<void> {

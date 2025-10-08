@@ -1,5 +1,4 @@
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 import {
   EditGasViewSelectorsText,
   EditGasViewSelectorsIDs,
@@ -99,7 +98,6 @@ class TransactionConfirmationView {
 
   async tapEstimatedGasLink(index = 0) {
     await Gestures.swipe(this.transactionAmount, 'up', 'fast');
-    await TestHelpers.delay(1000);
     await Gestures.tapAtIndex(this.estimatedGasLink, index);
   }
 

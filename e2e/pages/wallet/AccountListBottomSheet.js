@@ -105,7 +105,7 @@ class AccountListBottomSheet {
   }
 
   async longPressAccountAtIndex(index) {
-    await Gestures.tapAndLongPress(this.getSelectWithMenuElementName(index));
+    await Gestures.longPress(this.getSelectWithMenuElementName(index));
   }
 
   async tapAddAccountButton() {
@@ -119,12 +119,11 @@ class AccountListBottomSheet {
   }
 
   async longPressImportedAccount() {
-    await Gestures.tapAndLongPress(this.getSelectElement(1));
+    await Gestures.longPress(this.getSelectElement(1));
   }
 
   async swipeToDismissAccountsModal() {
     await Gestures.swipe(this.title, 'down', 'fast', 0.6);
-    await TestHelpers.delay(2000);
   }
 
   async tapYesToRemoveImportedAccountAlertButton() {

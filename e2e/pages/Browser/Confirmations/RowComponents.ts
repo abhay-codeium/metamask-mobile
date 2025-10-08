@@ -1,5 +1,5 @@
 import { ConfirmationRowComponentIDs } from '../../../selectors/Confirmation/ConfirmationView.selectors';
-import Matchers from '../../../utils/Matchers';
+import { Matchers } from '../../../framework';
 
 class RowComponents {
   get AccountNetwork() {

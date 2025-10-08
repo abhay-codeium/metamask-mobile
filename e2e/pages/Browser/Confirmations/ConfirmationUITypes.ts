@@ -1,5 +1,5 @@
 import { ConfirmationUIType } from '../../../selectors/Confirmation/ConfirmationView.selectors';
-import Matchers from '../../../utils/Matchers';
+import { Matchers } from '../../../framework';
 
 class ConfirmationUITypes {
   get ModalConfirmationContainer() {

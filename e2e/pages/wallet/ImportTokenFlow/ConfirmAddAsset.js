@@ -2,8 +2,7 @@ import {
   ImportTokenViewSelectorsIDs,
   ImportTokenViewSelectorsText,
 } from '../../../selectors/wallet/ImportTokenView.selectors';
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 
 class ConfirmAddAssetView {
   get container() {

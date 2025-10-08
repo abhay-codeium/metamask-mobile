@@ -3,8 +3,7 @@ import {
   SecurityPrivacyViewSelectorsIDs,
   SecurityPrivacyViewSelectorsText,
 } from '../../../selectors/Settings/SecurityAndPrivacy/SecurityPrivacyView.selectors';
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Gestures, Matchers } from '../../../framework';
 
 class SecurityAndPrivacy {
   get changePasswordButton() {

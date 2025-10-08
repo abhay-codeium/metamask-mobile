@@ -1,6 +1,5 @@
 import { ConfirmationFooterSelectorIDs } from '../../../selectors/Confirmation/ConfirmationView.selectors';
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 
 class FooterActions {
   get confirmButton() {

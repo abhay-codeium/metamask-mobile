@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Gestures, Matchers } from '../../framework';
 import { GetStartedSelectors } from '../../selectors/Ramps/GetStarted.selectors';
 
 class SellGetStartedView {

@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import { SmartAccountIds } from '../../selectors/MultichainAccounts/SmartAccount.selectors';
 
 class SmartAccount {

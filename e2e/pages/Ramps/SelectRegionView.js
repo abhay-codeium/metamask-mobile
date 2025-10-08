@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import { SelectRegionSelectors } from '../../selectors/Ramps/SelectRegion.selectors';
 
 class SelectRegionView {
@@ -14,7 +13,7 @@ class SelectRegionView {
   }
 
   async tapRegionOption(region) {
-    await Gestures.typeTextAndHideKeyboard(this.regionSearchInput, region);
+    await Gestures.typeText(this.regionSearchInput, region, {hideKeyboard: true});
     const regionName = Matchers.getElementByText(region, 1);
     await Gestures.waitAndTap(regionName);
   }

@@ -1,20 +1,17 @@
 /* eslint-disable no-console */
 import TestHelpers from '../../helpers';
 import { getLocalTestDappPort } from '../../fixtures/utils';
-import Matchers from '../../utils/Matchers';
+import { Matchers, Assertions, Gestures } from '../../framework';
 import { BrowserViewSelectorsIDs } from '../../selectors/Browser/BrowserView.selectors';
 import {
   MultichainTestDappViewSelectorsIDs,
-  MULTICHAIN_TEST_TIMEOUTS,
 } from '../../selectors/Browser/MultichainTestDapp.selectors';
 import Browser from './BrowserView';
-import Gestures from '../../utils/Gestures';
 import { waitFor } from 'detox';
 import ConnectBottomSheet from './ConnectBottomSheet';
 import MultichainUtilities from '../../utils/MultichainUtilities';
 import { loginToApp } from '../../viewHelper';
 import TabBarComponent from '../wallet/TabBarComponent';
-import Assertions from '../../utils/Assertions';
 import { isCaipChainId } from '@metamask/utils';
 
 // Use the same port as the regular test dapp - the multichainDapp flag controls which dapp is served
@@ -138,11 +135,11 @@ class MultichainTestDApp {
     await TestHelpers.reverseServerPort();
     await loginToApp();
     await TabBarComponent.tapBrowser();
-    await Assertions.checkIfVisible(Browser.browserScreenID);
+    await Assertions.expectElementToBeVisible(Browser.browserScreenID);
     await this.navigateToMultichainTestDApp(urlParams);
 
     // Verify WebView is visible
-    await Assertions.checkIfVisible(
+    await Assertions.expectElementToBeVisible(
       Promise.resolve(
         element(by.id(BrowserViewSelectorsIDs.BROWSER_WEBVIEW_ID)),
       ),
@@ -176,9 +173,6 @@ class MultichainTestDApp {
 
     // Tap create session button
     await this.tapButton(createSessionBtn);
-
-    // Wait for session creation
-    await TestHelpers.delay(1500);
 
     return true;
   }
@@ -215,9 +209,6 @@ class MultichainTestDApp {
     // Just tap the connect button directly as a fallback
     const connectBtn = await this.connectButton;
     await this.tapButton(connectBtn);
-
-    // Wait for connection to establish
-    await TestHelpers.delay(1500);
 
     return true;
   }
@@ -268,9 +259,6 @@ class MultichainTestDApp {
       return false;
     }
 
-    // Wait for connection to process
-    await TestHelpers.delay(3000);
-
     // Verify connection status by checking if checkboxes are enabled
     const ethereumCheckbox = webview.element(
       by.web.id('network-checkbox-eip155-1'),
@@ -280,9 +268,6 @@ class MultichainTestDApp {
       .catch(() => true); // If we can't check, assume disabled
 
     if (isDisabled) {
-      // Try additional wait
-      await TestHelpers.delay(2000);
-
       const isStillDisabled = await ethereumCheckbox
         .runScript('(el) => el ? el.disabled : true')
         .catch(() => true);
@@ -325,9 +310,6 @@ class MultichainTestDApp {
 
     await createSessionButton.scrollToView();
     await createSessionButton.runScript('(el) => { el.click(); }');
-
-    // Wait for session creation
-    await TestHelpers.delay(2000);
   }
 
   /**
@@ -339,9 +321,6 @@ class MultichainTestDApp {
 
     await getSessionButton.scrollToView();
     await getSessionButton.runScript('(el) => { el.click(); }');
-
-    // Wait for processing
-    await TestHelpers.delay(1000);
   }
 
   /**
@@ -355,9 +334,6 @@ class MultichainTestDApp {
 
     await revokeSessionButton.scrollToView();
     await revokeSessionButton.runScript('(el) => { el.click(); }');
-
-    // Wait for processing
-    await TestHelpers.delay(1500);
   }
 
   /**
@@ -367,9 +343,6 @@ class MultichainTestDApp {
   async getRevokeSessionData(
     resultIndex: number = 0,
   ): Promise<SessionResponse> {
-    // Wait for result to be populated
-    await TestHelpers.delay(2000);
-
     // Try to tap to expand the result (will do nothing if element doesn't exist)
     await this.tapFirstResultSummary(resultIndex);
 
@@ -434,8 +407,6 @@ class MultichainTestDApp {
 
       await firstResult.scrollToView();
       await firstResult.runScript('(el) => { if(!el.open) { el.click(); } }');
-
-      await TestHelpers.delay(500);
     } catch (error) {
       // Element doesn't exist, which is expected when there's no session
       // This is a valid case, so we just return without error
@@ -448,9 +419,6 @@ class MultichainTestDApp {
    * @param resultIndex - The index of the result to retrieve (defaults to 0)
    */
   async getSessionData(resultIndex: number = 0): Promise<SessionResponse> {
-    // Wait for result to be populated
-    await TestHelpers.delay(2000);
-
     // Try to tap to expand the result (will do nothing if element doesn't exist)
     await this.tapFirstResultSummary(resultIndex);
 
@@ -537,8 +505,6 @@ class MultichainTestDApp {
       if (isConnected) {
         return true;
       }
-
-      await TestHelpers.delay(1000);
     }
 
     return false;
@@ -627,7 +593,6 @@ class MultichainTestDApp {
             '(el) => { if(el && el.checked) { el.click(); } }',
           );
         });
-        await TestHelpers.delay(200);
       }
     }
 
@@ -641,7 +606,6 @@ class MultichainTestDApp {
     const webview = this.getWebView();
     // Scroll to the network selection area first
     await this.scrollToPageTop();
-    await TestHelpers.delay(1000);
 
     // First clear all network selections
     const cleared = await this.clearAllNetworkSelections();
@@ -659,7 +623,6 @@ class MultichainTestDApp {
 
       // Scroll to the checkbox to ensure it's visible
       await checkbox.scrollToView();
-      await TestHelpers.delay(300);
 
       // Check current state using reliable CSS :checked selector
       const isCurrentlyChecked = await webview
@@ -684,8 +647,6 @@ class MultichainTestDApp {
           console.error(`❌ Failed to select network eip155:${chainId}`);
           return false;
         }
-
-        await TestHelpers.delay(1500); // Wait for UI update
       }
     }
 
@@ -715,13 +676,9 @@ class MultichainTestDApp {
     await this.tapCreateSessionButton();
 
     // Handle the connect modal that appears after creating session
-    await TestHelpers.delay(2000);
     await ConnectBottomSheet.tapConnectButton().catch(() => {
       // Connect modal may not have appeared or already handled
     });
-
-    // Wait for the connection to be established
-    await TestHelpers.delay(2000);
   }
 
   /**
@@ -763,7 +720,6 @@ class MultichainTestDApp {
     try {
       const directButton = webview.element(by.web.id(directButtonId));
       await directButton.tap();
-      await TestHelpers.delay(MULTICHAIN_TEST_TIMEOUTS.DEFAULT_DELAY);
       return true;
     } catch (error) {
       console.error(
@@ -835,7 +791,6 @@ class MultichainTestDApp {
       const directButton = webview.element(by.web.id(directButtonId));
       // WebView elements don't need visibility checks - tap will fail if element doesn't exist
       await directButton.tap();
-      await TestHelpers.delay(MULTICHAIN_TEST_TIMEOUTS.DEFAULT_DELAY);
       return true;
     } catch (error) {
       console.error(`Failed to invoke ${method} on chain ${chainId}:`, error);
@@ -867,8 +822,6 @@ class MultichainTestDApp {
     } catch (error) {
       // Container might not exist or not be visible, continue anyway
     }
-
-    await TestHelpers.delay(MULTICHAIN_TEST_TIMEOUTS.METHOD_INVOCATION);
 
     try {
       // Try to scroll to the result item
@@ -955,8 +908,6 @@ class MultichainTestDApp {
       await invokeButton.scrollToView();
       await invokeButton.runScript('(el) => { el.click(); }');
 
-      // Wait for processing
-      await TestHelpers.delay(MULTICHAIN_TEST_TIMEOUTS.DEFAULT_DELAY);
       return true;
     } catch (error) {
       return false;
@@ -992,8 +943,6 @@ class MultichainTestDApp {
     if (params) {
       await this.replaceParams(scope, method, params);
     }
-
-    await TestHelpers.delay(MULTICHAIN_TEST_TIMEOUTS.DEFAULT_DELAY);
 
     await this.attemptInvokeMethodWithButton(scope);
   }

@@ -96,7 +96,7 @@ class NetworkListModal {
 
   async longPressOnNetwork(networkName: string): Promise<void> {
     const network = Matchers.getElementByText(networkName);
-    await Gestures.tapAndLongPress(network);
+    await Gestures.longPress(network);
   }
 
   async SearchNetworkName(networkName: string): Promise<void> {

@@ -102,7 +102,7 @@ class ContractApprovalBottomSheet {
   }
 
   async inputCustomAmount(amount: string): Promise<void> {
-    await Gestures.typeTextAndHideKeyboard(this.approveTokenAmount, amount);
+    await Gestures.typeText(this.approveTokenAmount, amount, {hideKeyboard: true});
   }
 
   async clearInput(): Promise<void> {

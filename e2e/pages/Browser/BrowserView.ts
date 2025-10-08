@@ -1,4 +1,3 @@
-import TestHelpers from '../../helpers';
 import {
   BrowserViewSelectorsIDs,
   BrowserViewSelectorsText,
@@ -7,8 +6,7 @@ import {
 import { AccountOverviewSelectorsIDs } from '../../selectors/Browser/AccountOverview.selectors';
 import { BrowserURLBarSelectorsIDs } from '../../selectors/Browser/BrowserURLBar.selectors';
 import { AddBookmarkViewSelectorsIDs } from '../../selectors/Browser/AddBookmarkView.selectors';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 import { waitForTestDappToLoad } from '../../viewHelper';
 import {
   TEST_DAPP_LOCAL_URL,
@@ -143,7 +141,7 @@ class Browser {
   }
 
   async tapOpenAllTabsButton(): Promise<void> {
-    await Gestures.waitAndTap(this.tabsButton, { delayBeforeTap: 4000 });
+    await Gestures.waitAndTap(this.tabsButton, { delay: 4000 });
   }
 
   async tapSecondTabButton(): Promise<void> {
@@ -176,8 +174,9 @@ class Browser {
   }
 
   async tapNetworkAvatarOrAccountButtonOnBrowser(): Promise<void> {
-    await TestHelpers.delay(4000);
-    await Gestures.waitAndTap(this.networkAvatarOrAccountButton);
+    await Gestures.waitAndTap(this.networkAvatarOrAccountButton, {
+      delay: 4000,
+    });
   }
 
   async tapAddToFavoritesButton(): Promise<void> {
@@ -211,20 +210,14 @@ class Browser {
 
   async navigateToURL(url: string): Promise<void> {
     await device.disableSynchronization(); // because animations makes typing into the browser slow
-    await Gestures.typeTextAndHideKeyboard(
+    await Gestures.typeText(
       this.urlInputBoxID as Promise<IndexableNativeElement>,
       url,
+      {hideKeyboard: true},
     );
     await device.enableSynchronization(); // re-enabling synchronization
   }
 
-  /**
-   * @deprecated - please migrate to the new  Framework
-   * @returns {Promise<void>}
-   */
-  async waitForBrowserPageToLoad(): Promise<void> {
-    await TestHelpers.delay(5000);
-  }
 
   async navigateToTestDApp(): Promise<void> {
     await this.tapUrlInputBox();

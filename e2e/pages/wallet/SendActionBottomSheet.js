@@ -1,6 +1,5 @@
 import { SendActionViewSelectorsIDs } from '../../selectors/SendFlow/SendActionView.selectors';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 
 class SendActionBottomSheet {
   get solanaAddressInputField() {
@@ -40,14 +39,17 @@ class SendActionBottomSheet {
   }
 
   async sendActionInputAddress(address) {
-    await Gestures.typeTextAndHideKeyboard(
+    await Gestures.typeText(
       this.solanaAddressInputField,
       address,
+      { hideKeyboard: true },
     );
   }
 
   async sendActionInputAmount(amount) {
-    await Gestures.typeTextAndHideKeyboard(this.solanaAmountInputField, amount);
+    await Gestures.typeText(this.solanaAmountInputField, amount, {
+      hideKeyboard: true,
+    });
   }
 
   async tapSendSOLTransactionButton() {

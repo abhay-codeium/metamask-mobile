@@ -1,5 +1,5 @@
 import { ConfirmationRequestTypeIDs } from '../../../selectors/Confirmation/ConfirmationView.selectors';
-import Matchers from '../../../utils/Matchers';
+import { Matchers } from '../../../framework';
 
 class RequestTypes {
   get PersonalSignRequest() {

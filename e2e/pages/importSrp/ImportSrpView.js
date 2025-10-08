@@ -34,7 +34,7 @@ class ImportSrpView {
   }
 
   async enterSrpWord(srpIndex, word) {
-    await Gestures.typeTextAndHideKeyboard(this.inputOfIndex(srpIndex), word);
+    await Gestures.typeText(this.inputOfIndex(srpIndex), word, {hideKeyboard: true});
   }
 
   async selectNWordSrp(numberOfWords) {

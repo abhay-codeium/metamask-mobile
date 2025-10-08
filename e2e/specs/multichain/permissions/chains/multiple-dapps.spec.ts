@@ -74,12 +74,10 @@ describe(SmokeNetworkExpansion('Per Dapp Management'), (): void => {
 
         // Step 2: Navigate to 1st test dApp to load page this should be connected to global network selector: Eth mainnet
         await Browser.navigateToTestDApp();
-        await Browser.waitForBrowserPageToLoad();
 
         // Navigate to 2nd test dapp to load page. This is a verification check. It should  be connected to global network selector: Eth mainnet
         await Browser.tapOpenAllTabsButton();
         await Browser.tapSecondTabButton();
-        await Browser.waitForBrowserPageToLoad();
 
         // This is here to debug whether or not the second test dapp loads and connected to chain
         // await TestHelpers.delay(10000)

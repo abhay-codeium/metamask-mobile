@@ -1,6 +1,5 @@
 import { RequestPaymentViewSelectors } from '../../selectors/Receive/RequestPaymentView.selectors';
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 
 class RequestPaymentView {
   get backButton(): TappableElement {
@@ -36,7 +35,7 @@ class RequestPaymentView {
   }
 
   async searchForToken(token: string): Promise<void> {
-    await Gestures.typeTextAndHideKeyboard(this.tokenSearchInput, token);
+    await Gestures.typeText(this.tokenSearchInput, token, {hideKeyboard: true});
   }
 
   async tapOnToken(token: string) {
@@ -45,9 +44,10 @@ class RequestPaymentView {
   }
 
   async typeInTokenAmount(amount: number | string): Promise<void> {
-    await Gestures.typeTextAndHideKeyboard(
+    await Gestures.typeText(
       this.requestAmountInput,
       String(amount),
+      {hideKeyboard: true},
     );
   }
 }

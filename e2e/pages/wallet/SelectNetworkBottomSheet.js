@@ -2,8 +2,7 @@ import {
   PermissionSummaryBottomSheetSelectorsIDs,
   PermissionSummaryBottomSheetSelectorsText,
 } from '../../selectors/Browser/PermissionSummaryBottomSheet.selectors';
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
+import { Gestures, Matchers } from '../../framework';
 
 class SelectNetworksBottomSheet {
   get connectedAccountsText() {
@@ -18,7 +17,7 @@ class SelectNetworksBottomSheet {
 
   async longPressOnNetwork(networkName) {
     const networkElement = await Matchers.getElementByText(networkName);
-    await Gestures.tapAndLongPress(networkElement);
+    await Gestures.longPress(networkElement);
   }
 }
 

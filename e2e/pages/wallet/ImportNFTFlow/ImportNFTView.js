@@ -1,5 +1,4 @@
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 import { NFTImportScreenSelectorsIDs } from '../../../selectors/wallet/ImportNFTView.selectors';
 
 class ImportNFTView {
@@ -26,11 +25,11 @@ class ImportNFTView {
   }
 
   async typeInNFTAddress(address) {
-    await Gestures.typeTextAndHideKeyboard(this.addressInput, address);
+    await Gestures.typeText(this.addressInput, address, {hideKeyboard: true});
   }
 
   async typeInNFTIdentifier(identifier) {
-    await Gestures.typeTextAndHideKeyboard(this.identifierInput, identifier);
+    await Gestures.typeText(this.identifierInput, identifier, {hideKeyboard: true});
   }
 }
 

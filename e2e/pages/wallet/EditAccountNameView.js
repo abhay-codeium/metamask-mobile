@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import { EditAccountNameSelectorIDs } from '../../selectors/wallet/EditAccountName.selectors';
 
 class EditAccountNameView {
@@ -19,8 +18,8 @@ class EditAccountNameView {
   }
 
   async updateAccountName(accountName) {
-    await Gestures.clearField(this.accountNameInput);
-    await Gestures.typeTextAndHideKeyboard(this.accountNameInput, accountName);
+    await Gestures.typeText(this.accountNameInput, '', {clearFirst: true});
+    await Gestures.typeText(this.accountNameInput, accountName, {hideKeyboard: true});
   }
 }
 

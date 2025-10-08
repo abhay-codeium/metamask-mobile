@@ -1,7 +1,6 @@
 import TestHelpers from '../../../helpers';
 import { ContactsViewSelectorIDs } from '../../../selectors/Settings/Contacts/ContacsView.selectors';
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Gestures, Matchers } from '../../../framework';
 
 class ContactsView {
   get container() {

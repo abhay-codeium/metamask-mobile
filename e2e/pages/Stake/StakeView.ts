@@ -1,7 +1,6 @@
 import { StakeViewSelectors } from '../../selectors/Stake/StakeView.selectors.js';
 
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 
 class StakeView {
   get stakeContainer(): DetoxElement {

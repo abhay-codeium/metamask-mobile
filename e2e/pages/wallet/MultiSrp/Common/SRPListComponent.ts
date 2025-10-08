@@ -1,5 +1,5 @@
 import { SRPListSelectorsIDs } from '../../../../selectors/MultiSRP/SRPList.selectors';
-import Matchers from '../../../../utils/Matchers';
+import { Matchers } from '../../../../framework';
 
 class SRPListComponent {
   get srpList() {

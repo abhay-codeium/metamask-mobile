@@ -1,5 +1,5 @@
 import { ConfirmationTopSheetSelectorsIDs } from '../../selectors/Confirmation/ConfirmationView.selectors';
-import Matchers from '../../utils/Matchers';
+import { Matchers } from '../../framework';
 
 type DetoxElement = Promise<
   | Detox.IndexableNativeElement

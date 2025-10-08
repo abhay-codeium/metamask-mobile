@@ -1,5 +1,4 @@
-import Matchers from '../../framework/Matchers.ts';
-import Gestures from '../../framework/Gestures.ts';
+import { Matchers, Gestures } from '../../framework';
 import { ImportAccountFromPrivateKeyIDs } from '../../selectors/ImportAccount/ImportAccountFromPrivateKey.selectors';
 
 class ImportAccountView {
@@ -24,7 +23,7 @@ class ImportAccountView {
   }
 
   async enterPrivateKey(privateKey) {
-    await Gestures.typeTextAndHideKeyboard(this.privateKeyField, privateKey);
+    await Gestures.typeText(this.privateKeyField, privateKey, {hideKeyboard: true});
   }
 }
 

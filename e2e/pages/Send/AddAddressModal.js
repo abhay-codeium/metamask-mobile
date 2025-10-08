@@ -1,6 +1,5 @@
 import { AddAddressModalSelectorsIDs } from '../../selectors/SendFlow/AddAddressModal.selectors';
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 
 class AddAddressModal {
   get container() {
@@ -24,7 +23,7 @@ class AddAddressModal {
   }
 
   async typeInAlias(name) {
-    await Gestures.typeTextAndHideKeyboard(this.aliasInput, name);
+    await Gestures.typeText(this.aliasInput, name, {hideKeyboard: true});
   }
 
   async tapSaveButton() {

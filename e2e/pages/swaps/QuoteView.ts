@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import {
   QuoteViewSelectorIDs,
   QuoteViewSelectorText,
@@ -40,43 +39,43 @@ class QuoteView {
     for (const digit of amount) {
       const button = Matchers.getElementByText(digit);
       await Gestures.waitAndTap(button, {
-        delayBeforeTap: 500,
+        delay: 500,
       });
     }
   }
 
   async tapOnSelectSourceToken() {
     await Gestures.waitAndTap(this.sourceToken, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 
   async tapOnSelectDestToken() {
     await Gestures.waitAndTap(this.destToken, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 
   async tapSearchToken() {
     await Gestures.waitAndTap(this.searchToken, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 
   async typeSearchToken(symbol: string) {
-    await Gestures.typeTextAndHideKeyboard(this.searchToken, symbol);
+    await Gestures.typeText(this.searchToken, symbol, {hideKeyboard: true});
   }
 
   async selectToken(symbol: string, index: number = 1): Promise<void> {
     const token = Matchers.getElementByText(symbol, index);
     await Gestures.waitAndTap(token, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 
   async tapOnGetQuotes() {
     await Gestures.waitAndTap(this.getQuotes, {
-      delayBeforeTap: 1000,
+      delay: 1000,
     });
   }
 

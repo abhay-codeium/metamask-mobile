@@ -1,6 +1,5 @@
 import { FiatOnTestnetsBottomSheetSelectorsIDs } from '../../../selectors/Settings/Advanced/FiatOnTestnetsBottomSheet.selectors';
-import Gestures from '../../../utils/Gestures';
-import Matchers from '../../../utils/Matchers';
+import { Gestures, Matchers } from '../../../framework';
 
 class FiatOnTestnetsBottomSheet {
   get continueButton() {

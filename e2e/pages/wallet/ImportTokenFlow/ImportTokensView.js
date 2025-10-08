@@ -1,5 +1,4 @@
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 import {
   ImportTokenViewSelectorsIDs,
   ImportTokenViewSelectorsText,
@@ -57,7 +56,7 @@ class ImportTokensView {
   }
 
   async typeTokenAddress(address) {
-    await Gestures.typeTextAndHideKeyboard(this.addressInput, address);
+    await Gestures.typeText(this.addressInput, address, {hideKeyboard: true});
   }
 
   async switchToCustomTab() {
@@ -65,7 +64,7 @@ class ImportTokensView {
   }
 
   async searchToken(tokenName) {
-    await Gestures.typeTextAndHideKeyboard(this.searchTokenBar, tokenName);
+    await Gestures.typeText(this.searchTokenBar, tokenName, {hideKeyboard: true});
   }
 
   async tapOnToken() {

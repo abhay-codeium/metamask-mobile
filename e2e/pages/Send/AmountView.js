@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Gestures, Matchers } from '../../framework';
 import {
   AmountViewSelectorsIDs,
   AmountViewSelectorsText,
@@ -34,7 +33,6 @@ class AmountView {
   }
 
   async tapNextButton() {
-    await TestHelpers.delay(1000);
     await Gestures.waitAndTap(this.nextButton);
   }
 
@@ -43,11 +41,9 @@ class AmountView {
   }
 
   async typeInTransactionAmount(amount) {
-    await TestHelpers.delay(1000);
     device.getPlatform() === 'android'
-      ? await Gestures.typeTextAndHideKeyboard(this.amountInputField, amount)
-      : await Gestures.replaceTextInField(this.amountInputField, amount);
-    await TestHelpers.delay(1000);
+      ? await Gestures.typeText(this.amountInputField, amount, {hideKeyboard: true})
+      : await Gestures.typeText(this.amountInputField, amount, {clearFirst: true});
   }
 
   async tapCurrencySwitch() {

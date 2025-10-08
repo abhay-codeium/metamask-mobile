@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import { AccountDetailsIds } from '../../selectors/MultichainAccounts/AccountDetails.selectors';
 import { ExportCredentialsIds } from '../../selectors/MultichainAccounts/ExportCredentials.selectors';
 

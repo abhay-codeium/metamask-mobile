@@ -1,5 +1,4 @@
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 import { ExportCredentialsIds } from '../../selectors/MultichainAccounts/ExportCredentials.selectors';
 import { RevealSeedViewSelectorsIDs } from '../../selectors/Settings/SecurityAndPrivacy/RevealSeedView.selectors';
 import { IndexableNativeElement } from 'detox/detox';
@@ -48,7 +47,7 @@ class ExportCredentials {
   }
 
   async enterPassword(password: string) {
-    await Gestures.typeTextAndHideKeyboard(this.passwordInput, password);
+    await Gestures.typeText(this.passwordInput, password, {hideKeyboard: true});
   }
 
   async tapNextButton() {

@@ -2,8 +2,7 @@ import {
   RevealSeedViewSelectorsIDs,
   RevealSeedViewSelectorsText,
 } from '../../../selectors/Settings/SecurityAndPrivacy/RevealSeedView.selectors';
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 
 class RevealSecretRecoveryPhrase {
   get container() {
@@ -72,9 +71,10 @@ class RevealSecretRecoveryPhrase {
   }
 
   async enterPasswordToRevealSecretCredential(password) {
-    await Gestures.typeTextAndHideKeyboard(
+    await Gestures.typeText(
       this.passwordInputToRevealCredential,
       password,
+      { hideKeyboard: true },
     );
   }
 

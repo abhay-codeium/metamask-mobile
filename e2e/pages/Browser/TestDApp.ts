@@ -1,8 +1,6 @@
 import enContent from '../../../locales/languages/en.json';
 
-import Gestures from '../../utils/Gestures';
-import Matchers from '../../utils/Matchers';
-import TestHelpers from '../../helpers';
+import { Gestures, Matchers } from '../../framework';
 import { TEST_DAPP_LOCAL_URL } from '../../fixtures/utils';
 import { BrowserViewSelectorsIDs } from '../../selectors/Browser/BrowserView.selectors';
 import { TestDappSelectorsWebIDs } from '../../selectors/Browser/TestDapp.selectors';
@@ -345,7 +343,6 @@ class TestDApp {
     await Browser.navigateToURL(
       `${TEST_DAPP_LOCAL_URL}?scrollTo=''&contract=${contractAddress}`,
     );
-    await TestHelpers.delay(3000); // should have a better assertion that waits until the webpage loads
   }
 
   async switchChainFromTestDapp(): Promise<void> {

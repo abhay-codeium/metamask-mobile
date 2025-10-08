@@ -2,8 +2,7 @@ import {
   DeleteWalletModalSelectorsIDs,
   DeleteWalletModalSelectorsText,
 } from '../../../selectors/Settings/SecurityAndPrivacy/DeleteWalletModal.selectors';
-import Matchers from '../../../utils/Matchers';
-import Gestures from '../../../utils/Gestures';
+import { Matchers, Gestures } from '../../../framework';
 
 class DeleteWalletModal {
   get container() {
@@ -33,7 +32,7 @@ class DeleteWalletModal {
   }
 
   async typeDeleteInInputBox() {
-    await Gestures.typeTextAndHideKeyboard(this.deleteInput, 'delete');
+    await Gestures.typeText(this.deleteInput, 'delete', {hideKeyboard: true});
   }
 }
 

@@ -2,8 +2,7 @@ import {
   NetworkAddedBottomSheetSelectorsIDs,
   NetworkAddedBottomSheetSelectorsText,
 } from '../../selectors/Network/NetworkAddedBottomSheet.selectors';
-import Matchers from '../../utils/Matchers';
-import Gestures from '../../utils/Gestures';
+import { Matchers, Gestures } from '../../framework';
 
 class NetworkAddedBottomSheet {
   get switchNetwork() {
